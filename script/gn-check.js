@@ -17,5 +17,9 @@ if (process.env.ELECTRON_OUT_DIR) {
   }
 }
 
+if (!GN_CHECK_DIR) {
+  throw new Error(`No viable out dir: one of Debug, Testing, or Release must exist.`)
+}
+
 const gnCheckString = `gn check ${GN_CHECK_DIR} //electron:electron_lib`
 sh.exit(sh.exec(gnCheckString).code)
