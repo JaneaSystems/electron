@@ -25,6 +25,11 @@ void InitializeFeatureList() {
   // when node integration is enabled.
   disable_features +=
       std::string(",") + features::kSpareRendererForSitePerProcess.name;
+
+#if defined(OS_WIN)
+  disable_features +=
+      std::string(",") + feature::kLegacyWindowsDWriteFontFallback.name;
+#endif
   base::FeatureList::InitializeInstance(enable_features, disable_features);
 }
 
